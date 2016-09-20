@@ -7,8 +7,11 @@ import sympy as sp
 x, y = sp.symbols('x y')
 # 심파이 심볼기능으로 기호 x y를 정함
 
-z = x + 2 * y
+z = x * 2 * y
 
 print('z = %s' % z)
+
+z_iy = sp.integrate(z, y)
+print ('z_iy = %s' % z_iy)
 
 # Sympy Tutorial, http://docs.sympy.org/latest/tutorial/index.html
