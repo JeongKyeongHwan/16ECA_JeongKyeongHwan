@@ -1,0 +1,41 @@
+
+01. 사용자 이름 지정
+$ git config --global user.name "username"
+
+
+02. 사용자 email 지정
+$ git config --global user.email "useremail"
+
+
+03. 지역 저장소 만들기
+$ mkdir ""
+$ cd ""
+$ git init
+
+
+04. 지역 저장소에 특정 파일 추가
+$ git add
+
+
+05. 지역 저장소에 commit
+$ git commit
+
+
+06. 지역 저장소에 commit message 와 함께 commit
+$ git commit - m "message"
+
+
+07. 지역 저장소 내역 확인
+$ git status
+
+
+08. 지역 저장소에 원격 저장소 주소 등록
+$ git remote add origin [https://github.com/JeongKyeongHwan/16ECA_JeongKyeongHwan/tree/master/lab_02_root_finding.git]
+
+
+09. 지역 저장소에 원격 저장소 내용을 받아 와서 작업 공간에 반영
+$ git pull / git patch
+
+
+10. 지역 저장소의 변경 내용을 원격 저장소에 반영
+$ git push origin master(branch)
