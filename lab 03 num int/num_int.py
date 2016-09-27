@@ -216,6 +216,21 @@ def main():
     n_plot = n_interval
     delta_x_plot = (float(x_end) - x_begin) / n_plot
     x = [x_begin + k * delta_x_plot for k in xrange(n_plot)]
-    y = [f(xk + 0.5 * delta_x_plot) for xk in x]
-    x += [x_end]
-    y += [0]
+    y = [f(xk) for xk in x]
+    x += [x_end, x_end, x_begin]
+    y += [f(x_end), 0.0, 0.0]
+
+    fill(x, y, color='r', alpha=0.2)
+    # 1차 적분 그림 끝
+
+    xlim(x_begin, x_end)
+    ylim(0.0, ylim()[1])
+
+    grid()
+    show()
+
+if "__main__" == __name__:
+    # 이 .py 파일이 import 될 때는 아래의 내용이 실행되지 않음
+
+    # 앞에서 정한 main() 함수를 실행시킴
+    main()
