@@ -1,6 +1,6 @@
 epsilon_global = 1e-4
 
-def newton(f, df, x0, epsilon=epsilon_global, b_verbose=False):
+def newton(f, x0, epsilon=epsilon_global, b_verbose=False):
 
     xi = float(x0)
 
@@ -13,7 +13,7 @@ def newton(f, df, x0, epsilon=epsilon_global, b_verbose=False):
             break
 
         else:
-            xi += (-fi / df(xi))
+            xi += ((2 - x0 * x0) / (2 * x0))
 
         return xi
 
@@ -21,16 +21,11 @@ def func(x):
 
     return 1.0 * x * x - 2.0
 
-def dfunc(x):
-
-    return 2.0 * x
-
 def main():
 
-    x_nr = newton(func, dfunc, 2.0, b_verbose=True)
+    x_nr = newton(func, 1.4, b_verbose=True)
     print 'x_nr =', x_nr
     print "f(x_nr) =", func(x_nr)
 
 if "__main__" == __name__:
     main()
-
