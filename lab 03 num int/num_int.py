@@ -200,7 +200,7 @@ def main():
     #엄밀해 그림 끝
 
     # rect0()
-    # 0차 적분 그림 시작작
+    # 0차 적분 그림 시작
     n_plot = n_interval
     delta_x_plot = (float(x_end) - x_begin) / n_plot
     x = [x_begin + k * delta_x_plot for k in xrange(n_plot)]
