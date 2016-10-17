@@ -225,65 +225,29 @@ def runge_while(f, x_init, t_init, t_end, delta_t):
 
 
 # 미분방정식을 위한 계수
-tau = 0.5
-m_kg = 10.0
-c_newton_per_meter_per_sec = 100.0
-k_newton_per_meter = 1000.0
+acceleration = (10e4 - 10e3) / 0.01
 
 def func(xk,tk):
     """
     dx/dt = f(x, t)를 만족시키는 x(t)를 구하고자 하는 f(x, t)
-
-    m d2x/dt2 +c dx/dt +k = u
-
+    d2s/dt2 = a
     :param xk: x(tk)에서의 상태변수
     :param tk: 시간 tk
     :return: 시간 tk 에서의 dx/dt
     """
     # 계단입력 u(t) = 1 if 0 <= t
-    u = 1
-
+    u = 0
     y1, y2 = xk[0], xk[1]
-
     # 기울기 계산
     y1dot = y2
-    y2dot = (u - (k_newton_per_meter * y1 + c_newton_per_meter_per_sec * y2)) /  m_kg
-
+    y2dot = acceleration
     return (y1dot, y2dot)
-
-def exact(t):
-    """
-    1 자우도 진동계 엄밀해
-    Ref : Rao, Mechanical Vibration, 2nd ed,
-        ISBN 0-201-55693-6, Example 4.3
-    :param t:
-    :return:
-    """
-    # 계단 입력
-    u = 1
-    # 고유진동수 (rad/sec)
-    wn = sqrt(k_newton_per_meter / m_kg)
-    # 감쇠율
-    zeta = c_newton_per_meter_per_sec / (2.0 * m_kg * wn)
-
-    s = sqrt(1.0 - zeta * zeta)
-    s1 = 1.0 / s
-
-    # 감쇠진동수 (rad/sec)
-    wd = wn * s
-    # 위상 (rad)
-    phi = atan(zeta * s)
-
-    # 엄밀해
-    y1 = (u / k_newton_per_meter) * (1.0 - s1 * exp(-zeta * wn * t) * cos(wd * t - phi))
-
-    return (y1)
 
 def main():
     help(fwd_euler)
 
     ti = 0.0
-    te = 2.0
+    te = 1.0
     delta_T = 0.01
     x0 = (0.0, 0.0)
     vT, vX = fwd_euler(func, x0, ti, te, delta_T)
@@ -291,12 +255,35 @@ def main():
     t_list_runge, x_list_runge = runge_while(func, x0, ti, te, delta_T)
 
     delta_T = 0.001
-    vT01, vX01 = fwd_euler(func, x0, ti, te, delta_T)
+    vT01, vX01 = runge_while(func, x0, ti, te, delta_T)
 
-    # exact soulution
-    vXexact = tuple([exact(tk) for tk in vT])
+    # 그래프 그리기 관련 기능 등을 담고 있는 pylab 모듈을 불러 들임
+    import pylab
 
-    print "runge_while = ", runge_while(func, x0, ti, te, delta_T)
+    pylab.plot(vT, vX, 'b', label='fwd Euler(0.01)')
+    pylab.plot(vT01, vX01, 'g', label='fwd Euler(0.001)')
+    pylab.plot(t_list_mod_euler, x_list_mod_euler, '*', label='Modified Euler(0.01)')
+    pylab.plot(t_list_runge, x_list_runge, 'x-', label='Runge(0.01)')
+    pylab.legend(loc=0)
+    pylab.grid(True)
+    pylab.ylabel('x')
+    pylab.xlabel('t')
+    pylab.show()
+
+    vP, vV = zip(*vX)
+    vP01, vV01 = zip(*vX)
+    p_list_mod_euler, v_list_mod_euler = zip(*x_list_mod_euler)
+    p_list_runge, v_list_runge = zip(*x_list_runge)
+
+    pylab.plot(vP, vV, label='fwd Euler(0.01)')
+    pylab.plot(vP01, vV01, label='fwd Euler(0.001)')
+    pylab.plot(p_list_mod_euler, v_list_mod_euler, label='Modified Euler(0.01)')
+    pylab.plot(p_list_runge, v_list_runge, label='Runge(0.01)')
+    pylab.legend(loc=0)
+    pylab.grid(True)
+    pylab.ylabel('xdot')
+    pylab.xlabel('t')
+    pylab.show()
 
 if "__main__" == __name__:
     main()
