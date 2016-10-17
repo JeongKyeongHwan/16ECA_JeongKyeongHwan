@@ -296,33 +296,7 @@ def main():
     # exact soulution
     vXexact = tuple([exact(tk) for tk in vT])
 
-    # 그래프 그리기 관련 기능 등을 담고 있는 pylab 모듈을 불러 들임
-    import pylab
-
-    pylab.plot(vT, vX, 'b', label='fwd Euler(0.01)')
-    pylab.plot(vT01, vX01, 'g', label='fwd Euler(0.001)')
-    pylab.plot(t_list_mod_euler, x_list_mod_euler, '*', label='Modified Euler(0.01)')
-    pylab.plot(t_list_runge, x_list_runge, 'x-', label='Runge(0.01)')
-    pylab.legend(loc=0)
-    pylab.grid(True)
-    pylab.ylabel('x')
-    pylab.xlabel('t')
-    pylab.show()
-
-    vP, vV = zip(*vX)
-    vP01, vV01 = zip(*vX)
-    p_list_mod_euler, v_list_mod_euler = zip(*x_list_mod_euler)
-    p_list_runge, v_list_runge = zip(*x_list_runge)
-
-    pylab.plot(vP, vV, label='fwd Euler(0.01)')
-    pylab.plot(vP01, vV01, label='fwd Euler(0.001)')
-    pylab.plot(p_list_mod_euler, v_list_mod_euler, label='Modified Euler(0.01)')
-    pylab.plot(p_list_runge, v_list_runge, label='Runge(0.01)')
-    pylab.legend(loc=0)
-    pylab.grid(True)
-    pylab.ylabel('xdot')
-    pylab.xlabel('t')
-    pylab.show()
+    print "runge_while = ", runge_while(func, x0, ti, te, delta_T)
 
 if "__main__" == __name__:
     main()
