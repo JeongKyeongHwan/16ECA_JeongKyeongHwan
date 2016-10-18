@@ -138,10 +138,10 @@ def newton(f, df, x0, epsilon=epsilon_global, b_verbose=False):
         else:
             xi += (-fi / df(xi))
 
-        if b_verbose:
-            print("nr_counter = $d" % counter)
+    if b_verbose:
+        print("nr_counter = %d" % counter)
 
-        return xi
+    return xi
 
 def func(x):
     """
@@ -179,7 +179,7 @@ def main():
     # 위의 두 방법에서는 필요하지 않았던 매개변수는?, 초기값은 얼마인가?
 
     print "error    seq        biss        nr"
-    print "        %7g %7g %7g" % (abs(2.0 ** 0.5 - x_seq)), abs(2.0 ** 0.5 - x_bis), abs(2.0 ** 0.5 - x_nr)
+    print "        %7g %7g %7g" % ((abs(2.0 ** 0.5 - x_seq)), abs(2.0 ** 0.5 - x_bis), abs(2.0 ** 0.5 - x_nr))
 
 
 if "__main__" == __name__:
