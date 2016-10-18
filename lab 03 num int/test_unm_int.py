@@ -38,9 +38,9 @@ def integrated_f(theta_rad):
 
 
 # 작성한 프로그램을 검증하기 위한 class
-# 다른 사람이 만들어 제공해 준 unittest. TestCase 객체에 원하는 기능을 부가하여 ?
+# 다른 사람이 만들어 제공해 준 unittest. TestCase 객체에 원하는 기능을 부가하여 만듦
 
-class TestNumericallntegration(unittest.TestCase):
+class TestNumericalIntegration(unittest.TestCase):
     def setUp(self):
         # 적분 구간
         self.xi_rad = 0.0
