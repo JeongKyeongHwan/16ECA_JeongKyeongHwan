@@ -39,7 +39,7 @@ def dfdx(x):
 
     x_float = float(x)
 
-    return 3.0 + x_float * x_float
+    return 3.0 * x_float * x_float
 
 # 1변수 방정식의 해 프로그램을 검증하기 위한 class
 # 다른 사람이 만들어 제공해 준 unittest. Testcase 객체에 원하는 기능을 부가하여 만듦
