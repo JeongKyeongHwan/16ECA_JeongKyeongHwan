@@ -10,7 +10,7 @@ Q 01 traffic card module ¸¦ ÀÌ¿ëÇÏ¿© ¿©·¯ÀåÀÇ ±³Åë Ä«µå¸¦ ¸¸µå´Â °ÍÀÌ °¡´ÉÇÑ°¡?
 
  
 
-Q 02 traffic card module ¿¡´Â Àü¿ª º¯¼ö balance_won ÀÌ ÀÖ´Âµ¥, ÇØ´ç ¸ðµâÀ» »ç¿ëÇÏ´Â ÇÁ·Î±×·¥¿¡¼­ ÀÌ º¯¼ö¸¦ Á÷Á¢ ÀÐ°Å³ª º¯°æÇÏ°Ô ÇÏ´Â °ÍÀÌ °¡´ÉÇÑ°¡?
+Q 02 & 03 traffic card module ¿¡´Â Àü¿ª º¯¼ö balance_won ÀÌ ÀÖ´Âµ¥, ÇØ´ç ¸ðµâÀ» »ç¿ëÇÏ´Â ÇÁ·Î±×·¥¿¡¼­ ÀÌ º¯¼ö¸¦ Á÷Á¢ ÀÐ°Å³ª º¯°æÇÏ°Ô ÇÏ´Â °ÍÀÌ °¡´ÉÇÑ°¡?
 
 
 
@@ -20,25 +20,39 @@ Q 02 traffic card module ¿¡´Â Àü¿ª º¯¼ö balance_won ÀÌ ÀÖ´Âµ¥, ÇØ´ç ¸ðµâÀ» »ç¿ëÇ
          'balance_won'ÀÌ Á¤ÀÇµÇÁö ¾Ê¾Ò´Ù´Â ¿À·ù ¸Þ½ÃÁö°¡ Ãâ·ÂµÈ´Ù.
 
 
- 
-
-
-Q 03 traffic card module ¿¡´Â Àü¿ª º¯¼ö balance_won ÀÌ ÀÖ´Âµ¥, ÇØ´ç ¸ðµâÀ» »ç¿ëÇÏ´Â ÇÁ·Î±×·¥¿¡¼­ ÀÌ º¯¼ö¸¦ Á÷Á¢ ÀÐ°Å³ª º¯°æÇÒ ¼ö ÀÖ°Ô ÇÏ´Â °ÍÀÌ ¹Ù¶÷Á÷ÇÑ°¡?
-
- 
 
 Q 04 °´Ã¼ ÁöÇâ ÇÁ·Î±×·¥¿¡¼­ "Ä¸½¶È­" ¿¡ ´ëÇØ ¼³¸íÇÏ½Ã¿À
 
- 
+
+[encapsulation] : °´Ã¼ÁöÇâÇÁ·Î±×·¡¹Ö¿¡¼­ÀÇ Áß¿äÇÑ Æ¯Â¡ Áß ÇÏ³ª·Î, ¿¬°üµÈ µ¥ÀÌÅÍ¿Í ÇÔ¼ö¸¦ ³í¸®ÀûÀ¸·Î ¹­¾î³õÀº °ÍÀÌ¸ç,
+µ¥ÀÌÅÍ¸¦ º¸È£ÇÏ±â À§ÇØ ´Ù¸¥ °´Ã¼ÀÇ Á¢±ÙÀ» Á¦ÇÑÇÏ´Â Á¢±Ù Á¦ÇÑ ¼ö½ÄÀÚÀÇ ±â´ÉÀ» Á¦°øÇÑ´Ù.
+
+ex) ÄÄÇ»ÅÍ ¸ð´ÏÅÍ´Â ¿©·¯°¡Áö ºÎÇ°µéÀ» Á¶ÇÕ¿¡¼­ ¸¸µç´Ù. 
+ÇÏÁö¸¸ ºÎÇ°À» ÀÏÀÏÀÌ ³ëÃâµÇ°Å³ª ºÐÇØÇÏÁö ¾Ê´õ¶óµµ ¸ð´ÏÅÍ·Î½á »ç¿ëÀÌ °¡´ÉÇÏ´Ù.
+
 
 Q 05 °´Ã¼ ÁöÇâ ÇÁ·Î±×·¥¿¡¼­ "»ó¼Ó¼º" ¿¡ ´ëÇØ ¼³¸íÇÏ½Ã¿À
 
- 
+
+ÇÏ³ªÀÇ °´Ã¼ Æ¯Â¡À» ´Ù¸¥ °´Ã¼¿¡°Ô Àü´ÞÇÏ´Â°Í.
+
+ex) ÄÄÇ»ÅÍ º»Ã¼´Â ¸ð´ÏÅÍ, Å°º¸µå, ¸¶¿ì½º µî ¿©·¯°¡Áö ´Ù¸¥ °´Ã¼ÀÇ Æ¯Â¡À» Àü´Þ(»ó¼Ó)¹Þ¾Æ¼­ »ç¿ë ÇÒ ¼ö ÀÖ´Ù.
+
+
 
 Q 06 traffic card module ÀÌ³ª TrafficCardClass ¿¡¼­´Â ÀÜ°í°¡ 0 ÀÌÇÏ·Î ³»·Á°¡´Â °ÍÀ» ¸·À» ¼ö ÀÖ´Â°¡?
 
+
+ ¸·À» ¼ö ÀÖ´Ù.
  
 
 Q 07 ÀÜ°í°¡ 0À¸·Î ³»·Á °¡Áö ¾Ê´Â ±â´ÉÀ» Ãß°¡ÇÏ±â À§ÇØ ¾î¶² Á¶Ä¡°¡ ÃëÇØ Á³´Â°¡?
 
+
+ ¿À·ù¸¦ ¸¸µé¾î¼­ ¿¹¿ÜÃ³¸®¸¦ ÇØÁÖ¸é µÈ´Ù.
+
+
+[Âü°í¹®Çå]
+Ä¸½¶È­ - µÎ»ê¹é°ú, http://www.doopedia.co.kr/search/encyber/new_totalSearch.jsp
+»ó¼Ó¼º, http://cafe.naver.com/cmenia/460
  	
