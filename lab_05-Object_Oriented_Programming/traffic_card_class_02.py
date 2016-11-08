@@ -5,7 +5,7 @@ class TrafficCardClass(object):
     """
     교통카드 클래스
 
-     object라는 다른 이름의 클래스에 원하는 기능을 추가하여 만듦
+     object라    는 다른 이름의 클래스에 원하는 기능을 추가하여 만듦
      이 때 object를 "교통카드 클래스의 superclass"라고 부르고,
      교통카드 클래스는 "object 클래스의 subclass"라고 부름
 
