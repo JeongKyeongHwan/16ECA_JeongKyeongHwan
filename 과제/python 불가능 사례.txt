@@ -1,0 +1,16 @@
+1. int, float 및 class를 stack에 넣을 수 있다.
+2. const가 type name 근처에 쓰여지지 않은 한 type 을 변경할 수 있다.
+python은 어떤 타입은 변하지 않는다.
+3. mult-threading을 지원한다.
+python은 broken mult-threading이 존재한다.
+4. windows 64bit 시스템에서 python에 비해 차지하는 메모리가 훨씬 적다.
+5. 프로그램이 compile-time에 의해 결정된다.
+6. 들여쓰기가 반드시 필요하지 않다.
+7. character와 enum date types을 지원한다.
+8. single precision float를 지원한다.
+
+[Reference]
+1. Michael Veksler, "Having a four year love-hate relationship with Python", 
+https://www.quora.com/What-is-the-difference-between-Python-and-C++, 12 Nov 2016
+2. "Difference between C and Python", http://www.rapidprogramming.com/questions-answers/difference-between-c-and-python-c-vs-python-1426
+, 12 Nov 2016
