@@ -107,7 +107,7 @@ def abjugate_matrix(mat_a):
 def row_mul_scalar(mat_a, i_row, a):
     n = len(mat_a[i_row])
     for k in range(n):
-        mat_a[i_row[k]] += a
+        mat_a[i_row][k] += a
 
 def row_mul_add(mat_a, i_row, j_row, a, k_from = 0):
     n = len(mat_a[i_row])
