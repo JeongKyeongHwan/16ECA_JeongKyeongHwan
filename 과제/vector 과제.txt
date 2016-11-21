@@ -1,0 +1,22 @@
+Q1 : vector 모듈을 이용하여 vector 클래스 의 그래프 그리기 예제를 재현하시오
+
+
+
+Q2 : 그래프 예제를 구현하기 위해 vector 모듈과 vector 클래스 중 어느쪽을 사용한 코드가 더 이해하기 쉬운가? 그 까닭은?
+
+vector 클래스가 이해하기 쉽다. 우선 vector 클래스 코드가 간단하고 vector 모듈 기계어 즉, c언어에 가깝다.
+
+Q3 : vector 클래스 에서 __rmul__() 메소드 의 역할은 무엇인가
+
+두 개의 각각의 벡터 성분끼리 곱해서 list를 만들어 주는 것
+ex) X = [0.1, 0.1] Y = [3, 4] -> [0.3. 0.4]
+
+Q4 : vector 클래스 예제에서 다음 구문이 가능한가? 가능하지 않다면 어떻게 수정하면 되는가?
+
+vector 모듈로 vector클래스 그래프룰 구현할때, def __rmul__(self, other): 구문이 없기때문에 
+
+def list(a, x):
+    result = [0.0] * len(x)
+    for k in xrange(len(x)):
+        result[k] = a[k] * x[k]
+    return result 방식으로 해결하였다.

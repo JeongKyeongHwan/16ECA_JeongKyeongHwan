@@ -42,6 +42,7 @@ class Vector(list):
         # Q : 이 함수의 역할은 무엇인가?
         return self * other
 
+
     def __abs__(self):
         """벡터의 크기 magnitude"""
         # 제곱의 합
@@ -54,7 +55,7 @@ class Vector(list):
         """element-wise power"""
         return Vector([s ** power for s in self])
 
-# Q : vector 모듈에넌 있으나 Vector 클래스에는 없는 기능을 구현해 보시오
+# Q : vector 모듈에는 있으나 Vector 클래스에는 없는 기능을 구현해 보시오
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
@@ -74,9 +75,9 @@ if __name__ == '__main__':
         u = 60
         t = Vector(range(0, 123)) * 0.1
         s = u * t + g * 0.5 * (t ** 2)
+        print s
         plt.plot(t, s)
         plt.show()
-
     main()
 
 # Q : g = 9.8일때 s 에서 -g를 대입할 경우 실행되는가?
