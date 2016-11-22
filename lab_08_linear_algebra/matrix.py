@@ -4,6 +4,9 @@
 행렬 모듈
 python의 list의 list을 이용하여 행렬을 구현함
 """
+#여인수 cofactor matrix 에 대한 설명 : https://www.youtube.com/watch?v=xZBbfLLfVV4
+#딸림행렬 adjoint matrix 에 대한 설명: https://www.youtube.com/watch?v=ArcrdMkEmKo
+
 
 import random
 
@@ -16,6 +19,17 @@ def alloc_mat(m, n):
     result = alloc_vec(m)
     for k in range(m):
         result[k] = alloc_vec(n)
+    return result
+
+def alloc_mat_bad_01(m, n):
+    row = alloc_vec(n)
+    result = []
+    for k in range(m):
+        result.append(row)
+    return result
+
+def alloc_mat_bad_00(m, n):
+    result = [[0.0] * n] * m
     return result
 
 def shape(mat_a):
@@ -58,15 +72,16 @@ def mul_mat_vec(mat_a, x):
     return c
 
 def mul_mat(mat_a, mat_b):
-    m_row_a, n_con_a = shape(mat_a)
-    m_row_b, n_con_b = shape(mat_b)
-    mat_c = alloc_mat(m_row_a, n_con_b)
+    m_row_a, n_col_a = shape(mat_a)
+    m_row_b, n_col_b = shape(mat_b)
+    mat_c = alloc_mat(m_row_a, n_col_b)
     for i in range(m_row_a):
-        for j in range(n_con_b):
+        for j in range(n_col_b):
             mat_c[i][j] = 0.0
-            for k in range(n_con_a):
+            for k in range(n_col_a):
                 mat_c[i][j] += mat_a[i][k] * mat_b[k][j]
     return mat_c
+
 
 def get_cofactor_matrix(mat_a, i, j):
     m_row_a, n_col_a = shape(mat_a)
@@ -164,6 +179,8 @@ def main():
 
     mat_a2 = scalar_mul_mat(2.0, mat_a)
     print_mat_elem(mat_a2, 'mat_a2', 2, 2)
+
+    print mul_mat(mat_a, mat_b)
 
 # Q : matrix 클래스를 작성할 수 있겠는가?
 

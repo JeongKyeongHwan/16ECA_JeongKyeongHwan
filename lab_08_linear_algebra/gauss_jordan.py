@@ -33,7 +33,7 @@ def gauss_jordan(mat_a):
 
     return inv_mat
 
-# Q : 피룡한 memory를 더 절약할 수 잇는 방법이 있을 것인가?
+# Q : 필요한 memory를 더 절약할 수 잇는 방법이 있을 것인가?
 
 if "__main__" == __name__:
     A = [[3, 2, 1],
