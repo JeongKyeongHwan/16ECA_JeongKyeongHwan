@@ -13,7 +13,7 @@ import random
 random.seed()
 
 def alloc_vec(n):
-    return[0.0] * n
+    return [0.0] * n
 
 def alloc_mat(m, n):
     result = alloc_vec(m)
@@ -35,39 +35,39 @@ def alloc_mat_bad_00(m, n):
 def shape(mat_a):
     return len(mat_a), len(mat_a[0])
 
-def mat_like(mat_t):
-    m_row, n_con = shape(mat_t)
-    mat_c = alloc_mat(m_row, n_con)
-    return mat_c, m_row, n_con
+def mat_like(mat_a):
+    m_row, n_col = shape(mat_a)
+    mat_c = alloc_mat(m_row, n_col)
+    return mat_c, m_row, n_col
 
 def scalar_mul_mat(a, mat_a):
-    mat_c, m_row, n_con = mat_like(mat_a)
+    mat_c, m_row, n_col = mat_like(mat_a)
     for i in range(m_row):
-        for j in range(n_con):
+        for j in range(n_col):
             mat_c[i][j] = a * mat_a[i][j]
     return mat_c
 
 def add_mat(mat_a, mat_b):
-    mat_c, m_row, n_con = mat_like(mat_a)
+    mat_c, m_row, n_col = mat_like(mat_a)
     for i in range(m_row):
-        for j in range(n_con):
+        for j in range(n_col):
             mat_c[i][j] = mat_a[i][j] + mat_b[i][j]
     return mat_c
 
 def transpose_mat(mat_a):
-    m_row, n_con = shape(mat_a)
-    mat_c = alloc_mat(n_con, m_row)
+    m_row, n_col = shape(mat_a)
+    mat_c = alloc_mat(n_col, m_row)
     for i in range(m_row):
-        for j in range(n_con):
+        for j in range(n_col):
             mat_c[j][i]  = mat_a[i][j]
     return mat_c
 
 def mul_mat_vec(mat_a, x):
-    m_row, n_con = shape(mat_a)
+    m_row, n_col = shape(mat_a)
     c = alloc_vec(m_row)
     for i in range(m_row):
         c[i] = 0.0
-        for k in range(n_con):
+        for k in range(n_col):
             c[i] += mat_a[i][k] * x[k]
     return c
 
@@ -124,7 +124,7 @@ def row_mul_scalar(mat_a, i_row, a):
     for k in range(n):
         mat_a[i_row][k] += a
 
-def row_mul_add(mat_a, i_row, j_row, a, k_from = 0):
+def row_mul_add(mat_a, i_row, j_row, a, k_from=0):
     n = len(mat_a[i_row])
     for k in range(k_from, n):
         mat_a[i_row][k] += a * mat_a[j_row][k]

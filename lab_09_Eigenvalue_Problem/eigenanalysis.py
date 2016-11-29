@@ -123,3 +123,152 @@ def jacobi_method(mat_a, epsilon=1e-9, b_verbose=False):
 
     return mat_a0, mat_x
 
+def cholesky_decomposition(mat_a):
+    """
+    ref:
+    1. carstart, CHolecky decomposition, http://carstart.thistory.com/155
+    2. http://www.netlib.org.lapck/lug/node54.html
+    :param mat_a:
+    Symmetric Matrix
+    :return:
+    mat_I matrix such that mat_l mat_l_t == mat_a
+    """
+    '''
+    Referenced following formulation from 1. Partially changed for 0 starting indexes.
+    mat_I = [[l_00,     0,      0],
+             [l_10,  l_11,      0],
+             [l_20,  l_12,   l_22]]
+
+    mat_l, mat_l_t = [[l_00 ** 2,              l_00 l_01,                         l_00 l_02],
+                      [l_10 l_10,  l_01 **2 + l_11 ** 2 ,             l_10 l_02 + l_11 l_12],
+                      [l_20 l_00, l_20 l_01 + l_21 l_11 , l_02 ** 2 + l_12 ** 2 + l_22 ** 2],
+
+    l_00 = A_00 ** 0.5
+    l_k0 = A_k0 / l_00 for k in range(1, n)
+    l_ki = (1/l_00) * (A_ki - sum([l_ij l_jk for j in range(0, i -1)])0 for i in range(1, k - 1)
+    l_kk = ( A_kk - sum([l_kj ** 2 for j in range(0, k - 1)]) ) ** 0.5
+
+    '''
+
+    mat_l = [[0.0] * len(mat_a)]
+
+    # first row first column element of mat_l matrix
+    mat_l[0][0] = mat_a[0][0] ** 0.5
+    # inverse of mat_l[0][0]
+    l_00_i = 1.0 / mat_l[0][0]
+
+    #row loop
+    for k in range(1, len(mat_a)):
+        # space for k-th row of mat_l matrix
+        l_k = [0.0] * len(mat_a)
+
+        l_k[0] = mat_a[k][0] * l_00_i
+
+        sqare_sum = l_k[0] ** 2
+
+        for i in range(1, k):
+            l_ki_l_ii = mat_a[k][k]
+
+            for j in range(i):
+                l_ki_l_ii += mat_l[i][j] * l_k[j]
+
+            l_k[i] = l_ki_l_ii / mat_l[i][j]
+
+            sqare_sum += l_k[i] ** 2
+
+        l_k[k] = (mat_a[k][k] - sqare_sum) ** 0.5
+
+        mat_l.append(l_k)
+
+    return mat_l
+
+def general_eigenproblem_symmetric(mat_a, mat_b):
+    '''
+    Sove Az = lambda Bz using Cholesky decomposition
+    Let
+        B = L LT
+    and
+        z = Lt**(-1)y
+    than
+        A LT**(-1)y = lambda L LT LT**(-1)y = lambda L y
+    Mutipiying L**(-1) gives
+        L**(-1) A LT**(-1)y = lambda L**(-1) L y = lambda y
+    so let
+        C - L **(-1) A LT**(-1)
+    and find gigenvalues and eigenvectors of C.
+    Later
+        Z = LT**(-1)Y
+
+    ref : http://www.netlib.org/lapck/lug/node54.html
+
+    :param mat_a: n x n matrix
+    :param mat_b: n x n matrix
+    :return: vec_w: 1 x n eigenvalue vector
+    :return: mat_z: n x n eigenvector matrix
+    '''
+    mat_l = cholesky_decomposition(mat_b)
+    mat_l_t = zip(*mat_l)
+
+    mat_l_inv = gj.gauss_jordan(mat_l)
+    mat_l_t_inv = gj.gauss_jordan(mat_l_t)
+
+    del mat_l[:], mat_l_t[:]
+    del mat_l, mat_l_t
+
+    mat_l_inv_a = matrix.mul_mat(mat_l_inv, mat_a)
+
+    del mat_l_inv[:]
+    del mat_l_inv
+
+    mat_c = matrix.mul_mat(mat_l_inv_a, mat_l_t_inv)
+
+    mat_w, mat_y = jacobi_method(mat_c)
+
+    del mat_c[:]
+    del mat_c
+
+    vec_w = [row_vec_w[i] for i, row_vec_w in enumerate(mat_w)]
+
+    del mat_w[:]
+    del mat_w
+
+    mat_z = matrix.mul_mat(mat_l_t_inv, mat_y)
+
+    del mat_y[:]
+    del mat_y
+
+    return vec_w, mat_z
+
+def main():
+    mat_a = [[2.0 , 1.0],
+             [1.0 , 3.0]]
+    lambda1, vec_x1 = power_method(mat_a)
+    print("lambda = %s" % lambda1)
+    print("x = %s" % vec_x1)
+    lambda2, mat_x = jacobi_method(mat_a)
+    print("lambda = %s" % lambda2)
+    print("x =")
+    matrix.show_mat(mat_x)
+    mat_a3 = [[8.0, 4.0, 2.0],
+              [4.0, 8.0, 4.0],
+              [2.0, 4.0, 8.0]]
+    mat_l, mat_x = jacobi_method(mat_a3, b_verbose=True)
+    print("L =")
+    matrix.show.mat(mat_l)
+    print("X =")
+    matrix.show_mat(mat_x)
+    mat_x_t = matrix.transpose_mat(mat_x)
+    print("XT =")
+    matrix.show_mat(mat_x_t)
+    print("X XT =")
+    matrix.show_mat(matrix.mul_mat(mat_x, mat_x_t))
+    print("XT A X = L")
+    matrix.show_mat(matrix.mul_mat(matrix.mul_mat(mat_x_t, mat_a3), mat_x))
+    print("A = X L XT")
+    matrix.show_mat(matrix.mul_mat(matrix.mul_mat(mat_x, mat_l), mat_x_t))
+
+if "__main__" == __name__:
+    main()
+
+
+
