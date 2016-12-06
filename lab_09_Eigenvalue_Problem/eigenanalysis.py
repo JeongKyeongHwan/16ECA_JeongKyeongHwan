@@ -248,6 +248,7 @@ def main():
     lambda2, mat_x = jacobi_method(mat_a)
     print("lambda = %s" % lambda2)
     print("x =")
+
     matrix.show_mat(mat_x)
     mat_a3 = [[8.0, 4.0, 2.0],
               [4.0, 8.0, 4.0],
